@@ -16,62 +16,41 @@ int main() {
     }
     atexit(SDL_Quit);
 
-    SDL_Window *window = SDL_CreateWindow("fenêtre", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Window *window = SDL_CreateWindow("window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (!window) {
         fprintf(stderr, "Couldn't initialize window : %s\n", SDL_GetError());
     }
-    else
-    {
-        SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-        if (!renderer) {
-            fprintf(stderr, "Renderer couldn't be created : %s\n", SDL_GetError());
-        }
-        else
-        {
 
-            while (true) {
-
-                SDL_Event  e;
-                SDL_WaitEvent(&e);
-                if (e.type == SDL_QUIT) {
-                    break;
-                }
-
-                SDL_SetRenderDrawColor(renderer,  0x00, 0x00, 0x00, 0xFF);
-
-                SDL_RenderClear(renderer);
-
-                for ( int i = 0 ; i < 3 ; i++) {
-                    SDL_FRect rect;
-                    rect.w = (float)SCREEN_WIDTH / 3;
-                    rect.h = SCREEN_HEIGHT;
-                    rect.x = (float)i/3 * (float)SCREEN_WIDTH;
-                    rect.y = 0;
-
-                    switch (i) {
-                    case 0: {
-                        SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0xFF, 0xFF);
-                        break;
-                    }
-                    case 1: {
-                        SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-                        break;
-                    }
-                    case 2: {
-                        SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
-                        break;
-                    }
-                    }
-                    SDL_RenderFillRectF(renderer, &rect);
-                }
-                SDL_RenderPresent(renderer);
-            }
-            SDL_DestroyRenderer(renderer);
-        }
-        SDL_DestroyWindow(window);
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+    if (!renderer) {
+        fprintf(stderr, "Renderer couldn't be created : %s\n", SDL_GetError());
     }
-    SDL_Quit();
+
+    SDL_FRect rect;
+    rect.w = (float)1/5 * SCREEN_WIDTH;
+    rect.h = SCREEN_HEIGHT;
+    rect.x = (float)4/5 * (float)SCREEN_WIDTH;
+    rect.y = 0;
+
+    int quit = false;
+
+    while (!quit) {
+
+        SDL_Event e;
+        SDL_WaitEvent(&e);
+        if(e.type == SDL_QUIT) quit = true;
+
+        SDL_SetRenderDrawColor(renderer, 42, 41, 40, 255);
+        SDL_RenderClear(renderer);
+
+        SDL_SetRenderDrawColor(renderer, 75, 74, 74, 255);
+        SDL_RenderFillRectF(renderer, &rect);
+        SDL_RenderPresent(renderer);
+
+    }
+
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
 
     return 0;
 }
-
