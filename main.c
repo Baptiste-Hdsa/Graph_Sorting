@@ -1,4 +1,6 @@
 #include <SDL2/SDL.h>
+#include "utils.h"
+#include "render.h"
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
@@ -26,6 +28,17 @@ int main() {
         fprintf(stderr, "Renderer couldn't be created : %s\n", SDL_GetError());
     }
 
+    int array_size = 50;
+    int *array = Create_array(array_size);
+    Shuffle_array(array, array_size);
+
+
+
+
+
+
+
+
     SDL_FRect rect;
     rect.w = (float)1/5 * SCREEN_WIDTH;
     rect.h = SCREEN_HEIGHT;
@@ -42,6 +55,8 @@ int main() {
 
         SDL_SetRenderDrawColor(renderer, 42, 41, 40, 255);
         SDL_RenderClear(renderer);
+
+        render_graph(renderer, array, array_size, SCREEN_WIDTH - rect.w, SCREEN_HEIGHT);
 
         SDL_SetRenderDrawColor(renderer, 75, 74, 74, 255);
         SDL_RenderFillRectF(renderer, &rect);

@@ -10,8 +10,7 @@ find_package(SDL2_ttf QUIET)
 add_executable(graphsorting main.c
         sorting.c
         render.c
-        render.h
-        sorting.h)
+        utils.c)
 
 target_include_directories(graphsorting PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})
 
