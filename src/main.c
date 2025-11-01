@@ -5,9 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "setting.h"
 
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
 
 int main() {
     if ((SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) == -1)) {
@@ -40,11 +39,7 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    SDL_FRect rect;
-    rect.w = (float)1 / 5 * SCREEN_WIDTH;
-    rect.h = SCREEN_HEIGHT;
-    rect.x = (float)4 / 5 * (float)SCREEN_WIDTH;
-    rect.y = 0;
+    SDL_FRect rect = Rect_setting();
 
     int quit = false;
 
@@ -64,14 +59,14 @@ int main() {
             }
         }
 
-
         SDL_SetRenderDrawColor(renderer, 42, 41, 40, 255);
         SDL_RenderClear(renderer);
 
         Render_graph(renderer, array, array_size, SCREEN_WIDTH - rect.w, SCREEN_HEIGHT);
 
-        SDL_SetRenderDrawColor(renderer, 75, 74, 74, 255);
-        SDL_RenderFillRectF(renderer, &rect);
+        setting* setting = Setting_new();
+        Render_setting(renderer, setting);
+
         SDL_RenderPresent(renderer);
     }
 

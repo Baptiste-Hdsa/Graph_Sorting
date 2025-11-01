@@ -2,9 +2,9 @@
 // Created by bapti on 31/10/2025.
 //
 
-#include <SDL2/SDL.h> // Pour SDL_Renderer
+#include <SDL2/SDL.h>
 #include "sorting.h"
-#include "render.h"  // Pour Render_graph
+#include "render.h"
 
 static void Merge(int *array, int *temp_array, int left, int mid, int right, SDL_Renderer* renderer, int size, int render_width, int render_height);
 
@@ -37,6 +37,9 @@ static void Merge(int *array, int *temp_array, int left, int mid, int right, SDL
         SDL_RenderClear(renderer);
 
         Render_graph(renderer, array, size, render_width, render_height);
+
+        setting* setting = Setting_new();
+        Render_setting(renderer, setting);
 
         SDL_RenderPresent(renderer);
         //SDL_Delay(10);

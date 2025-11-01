@@ -11,6 +11,8 @@ add_executable(graphsorting src/main.c
         src/sorting.c
         src/render.c
         src/utils.c
+        include/setting.h
+        src/setting.c
 )
 
 target_include_directories(graphsorting PRIVATE

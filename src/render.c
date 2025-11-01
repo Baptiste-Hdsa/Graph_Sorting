@@ -13,3 +13,8 @@ void Render_graph(SDL_Renderer* renderer, int *array, int size, int width, int h
         SDL_RenderFillRectF(renderer, &rect);
     }
 }
+
+void Render_setting(SDL_Renderer* renderer, setting* setting) {
+    SDL_SetRenderDrawColor(renderer, 75, 74, 74, 255);
+    SDL_RenderFillRectF(renderer, &setting->rect);
+}
