@@ -5,6 +5,6 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include "utils.h"
 
-void Merge_sort(int *array, int size, SDL_Renderer *renderer, int render_width, int render_height);
-
+void Merge_sort(bar** bars, int size, SDL_Renderer* renderer);

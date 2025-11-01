@@ -32,15 +32,13 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    int array_size = 500;
-    srand(time(NULL));
-    int* array = Create_array(array_size);
-    if (!array) {
-        exit(EXIT_FAILURE);
-    }
-
     SDL_FRect rect = Rect_setting();
 
+    srand(time(NULL));
+    bar** bars = Bars_new(SIZE, SCREEN_WIDTH - rect.w, SCREEN_HEIGHT);
+    if (!bars) {
+        exit(EXIT_FAILURE);
+    }
     int quit = false;
 
     while (!quit) {
@@ -51,10 +49,10 @@ int main() {
 
             if (e.type == SDL_KEYDOWN) {
                 if (e.key.keysym.sym == SDLK_q) {
-                    Merge_sort(array, array_size, renderer, SCREEN_WIDTH - rect.w, SCREEN_HEIGHT);
+                    Merge_sort(bars, SIZE, renderer);
                 }
                 if (e.key.keysym.sym == SDLK_s) {
-                    Shuffle_array(array, array_size);
+                    Shuffle_bars(bars, SIZE);
                 }
             }
         }
@@ -62,7 +60,7 @@ int main() {
         SDL_SetRenderDrawColor(renderer, 42, 41, 40, 255);
         SDL_RenderClear(renderer);
 
-        Render_graph(renderer, array, array_size, SCREEN_WIDTH - rect.w, SCREEN_HEIGHT);
+        Render_frame(renderer, bars, SIZE);
 
         setting* setting = Setting_new();
         Render_setting(renderer, setting);
@@ -72,7 +70,7 @@ int main() {
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    free(array);
+    Bars_destroy(bars, SIZE);
 
     return 0;
 }

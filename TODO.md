@@ -1,3 +1,3 @@
-- fenêtre extensible
-- make another render for setting part in the frame
-- color the rect wich change
+- [ ] extensible window
+- [x] make another render for setting part in the frame
+- [ ] color the rect which change

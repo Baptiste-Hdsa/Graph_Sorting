@@ -6,8 +6,11 @@
 
 #include <SDL2/SDL.h>
 #include "setting.h"
+#include "utils.h"
 
-void Render_graph(SDL_Renderer* renderer, int *array, int size, int width, int height);
+void Render_graph(SDL_Renderer* renderer, bar** bars, int size);
 
 void Render_setting(SDL_Renderer* renderer, setting *setting);
+
+void Render_frame(SDL_Renderer* renderer, bar** bars, int size);
 
