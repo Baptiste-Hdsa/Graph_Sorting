@@ -1,2 +1,3 @@
 - fenêtre extensible
-- render
+- make another render for setting part in the frame
+- color the rect wich change
