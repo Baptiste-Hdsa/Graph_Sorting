@@ -1,1 +1,2 @@
 - fenêtre extensible
+- render

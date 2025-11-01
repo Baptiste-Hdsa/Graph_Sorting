@@ -7,12 +7,16 @@ find_package(SDL2_image QUIET)
 find_package(SDL2_mixer QUIET)
 find_package(SDL2_ttf QUIET)
 
-add_executable(graphsorting main.c
-        sorting.c
-        render.c
-        utils.c)
+add_executable(graphsorting src/main.c
+        src/sorting.c
+        src/render.c
+        src/utils.c
+)
 
-target_include_directories(graphsorting PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})
+target_include_directories(graphsorting PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})
+
 
 target_link_libraries(graphsorting PRIVATE SDL2::SDL2 SDL2_image::SDL2_image SDL2_mixer::SDL2_mixer SDL2_ttf::SDL2_ttf m)
 

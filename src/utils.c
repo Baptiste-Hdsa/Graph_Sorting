@@ -4,12 +4,16 @@
 
 #include <SDL2/SDL.h>
 #include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int* Create_array(int size) {
 
     int *array = calloc(1, size * sizeof(int));
-    if (!array)
-        fprintf(stderr, "Failed to allocate memory");
+    if (!array) {
+        fprintf(stderr, "Failed to allocate memory for array");
+        return NULL;
+    }
 
     for (int i = 0; i < size; i++) {
         array[i] = i + 1;
